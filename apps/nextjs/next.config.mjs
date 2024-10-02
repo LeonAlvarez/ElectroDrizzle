@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  swcMinify: false,
+  //swcMinify: false,
   transpilePackages: [
     "@electric-sql/pglite-react",
     "@electric-sql/pglite-repl",
     "@electric-sql/pglite",
   ],
-  reactStrictMode: false,
+  reactStrictMode: true,
 };
 
 export default nextConfig;

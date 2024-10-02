@@ -3,27 +3,32 @@
 import React, { useState, useEffect } from "react";
 import { PGliteProvider } from "@electric-sql/pglite-react"
 import { initializeDB } from "../db"
+import { PGlite } from "@electric-sql/pglite";
 
-export default function DBProvider({ children }: { children: React.ReactNode }) {
-  const [db, setDb] = useState<any>(null);
 
-  useEffect(() => {
+export default function DBProvider({ children }: { children: React.ReactNode }): React.ReactNode {
+  const [pg, setPg] = useState<PGlite>();
+
+  const initDB = async () => {
     try {
-      initializeDB().then(initializedDb => {
-        console.log("db initialized", initializedDb);
-        setDb(initializedDb);
-      })
+      const initialized = await initializeDB();
+      setPg(initialized?.pg);
     } catch (error) {
       console.error("Failed to initialize db", error);
     }
+  };
+
+  useEffect(() => {
+    if (pg) return;
+    initDB();
   }, []);
 
-  if (!db) return <div>Loading...</div>;
+  if (!pg) return <div>Loading</div>;
 
   return (
-    <PGliteProvider db={db}>
+    <PGliteProvider db={pg}>
       {children}
     </PGliteProvider>
-  )
+  );
 }
 

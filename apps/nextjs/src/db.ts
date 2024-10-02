@@ -3,24 +3,21 @@
 import { live } from "@electric-sql/pglite/live";
 import { vector } from "@electric-sql/pglite/vector";
 import { createPgLiteClient, schema, PgDialect, frontMigrations } from "db/front";
+import { PGlite } from "@electric-sql/pglite";
 
 const isDev = process.env.NODE_ENV === "development";
 const dbName = isDev ? "local-test-dev" : "local-test";
 
 // Create an async initialization function
-async function initializeDB() {
+async function initializeDB(pg?: PGlite) {
   try {
-    const { PGlite } = await import("@electric-sql/pglite");
-    const client = await PGlite.create({
+    pg ??= new PGlite({
       dataDir: `idb://${dbName}`,
       extensions: { live, vector },
-      debug: 1
+      //debug: 1
     });
-
-    //return client;
-
-    console.log("frontMigrations", frontMigrations);
-    const _db = createPgLiteClient(client, schema);
+    
+    const db = createPgLiteClient(pg, schema);
 
     //prevent multiple schema migrations to be run
     let isLocalDBSchemaSynced = false;
@@ -32,7 +29,7 @@ async function initializeDB() {
         await new PgDialect().migrate(
           frontMigrations,
           //@ts-ignore
-          _db._.session,
+          db._.session,
           dbName
         );
         isLocalDBSchemaSynced = true;
@@ -43,9 +40,11 @@ async function initializeDB() {
       }
     }
 
-    console.log("db", _db);
-    return client;
-    //return Object.assign(_db, { schema });
+    return {
+      pg,
+      db,
+      schema
+    }
 
   } catch (e) {
     console.error("Failed to initialize db", e);
