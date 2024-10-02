@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { PGliteProvider } from "@electric-sql/pglite-react"
 import { PGliteWorker } from '@electric-sql/pglite/worker'
-import { PGliteWithLive } from "@electric-sql/pglite/live";
 
 const dbName = 'electro-drizzle';
 const ELECTRIC_SQL_BASE_URL = process.env.NEXT_PUBLIC_ELECTRIC_SQL_BASE_URL || 'http://localhost:8003/v1/shape';

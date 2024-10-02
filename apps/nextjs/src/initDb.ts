@@ -1,6 +1,5 @@
 
 import { createPgLiteClient, schema, PgDialect, frontMigrations } from "db/front";
-import { PGliteWorker } from '@electric-sql/pglite/worker'
 import { PGliteInterface } from "@electric-sql/pglite";
 
 type TablesToSync = {
