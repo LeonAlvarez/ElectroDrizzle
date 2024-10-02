@@ -2,12 +2,14 @@
   "name": "db",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "",
   "types": "index.ts",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:generate": "drizzle-kit generate",
+    "db:export": "tsx ./export-migrations.ts",
+    "db:generate": "drizzle-kit generate && pnpm db:export",
     "db:migrate": "drizzle-kit migrate"
   },
   "keywords": [],
