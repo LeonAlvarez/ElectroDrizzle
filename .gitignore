@@ -84,4 +84,4 @@ typings/
 .dynamodb/
 
 # TernJS port file
-.tern-port
+.tern-portnode_modules/
