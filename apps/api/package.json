@@ -5,11 +5,12 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.13.1",
-    "hono": "^4.6.3",
-    "db": "workspace:*"
+    "db": "workspace:*",
+    "hono": "^4.6.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
+    "@types/pg": "^8.11.10",
     "tsx": "^4.7.1"
   }
 }
