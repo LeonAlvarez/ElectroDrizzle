@@ -3,12 +3,13 @@
 import React, { useState, useEffect } from "react";
 import { PGliteProvider } from "@electric-sql/pglite-react"
 import { PGliteWorker } from '@electric-sql/pglite/worker'
+import { PGliteInterface } from "@electric-sql/pglite";
 
 const dbName = 'electro-drizzle';
 const ELECTRIC_SQL_BASE_URL = process.env.NEXT_PUBLIC_ELECTRIC_SQL_BASE_URL || 'http://localhost:8003/v1/shape';
 
 export default function DBProvider({ children }: { children: React.ReactNode }): React.ReactNode {
-  const [pg, setPg] = useState<PGliteWorker>();
+  const [pg, setPg] = useState<PGliteInterface>();
 
   const setPglite = async () => {
     const pglite = await PGliteWorker.create(
@@ -24,6 +25,7 @@ export default function DBProvider({ children }: { children: React.ReactNode }):
         },
       }
     );
+    await pglite.waitReady;
     setPg(pglite);
   }
 
