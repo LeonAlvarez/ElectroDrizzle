@@ -25,7 +25,6 @@ export default function DBProvider({ children }: { children: React.ReactNode }):
         },
       }
     );
-    await pglite.waitReady;
     setPg(pglite);
   }
 
