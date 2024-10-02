@@ -52,57 +52,60 @@ importers:
   apps/nextjs:
     dependencies:
       '@electric-sql/pglite':
-        specifier: 0.2.7
-        version: 0.2.7
+        specifier: ^0.2.10
+        version: 0.2.10
       '@electric-sql/pglite-react':
-        specifier: 0.2.7
-        version: 0.2.7(@electric-sql/pglite@0.2.7)(react@18.3.1)
+        specifier: ^0.2.10
+        version: 0.2.10(@electric-sql/pglite@0.2.10)(react@18.3.1)
       '@electric-sql/pglite-repl':
-        specifier: 0.2.7
-        version: 0.2.7(@babel/runtime@7.25.6)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@electric-sql/pglite@0.2.7)(@lezer/common@1.2.1)(codemirror@6.0.1(@lezer/common@1.2.1))
+        specifier: ^0.2.10
+        version: 0.2.10(@babel/runtime@7.25.6)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@electric-sql/pglite@0.2.10)(@lezer/common@1.2.2)(codemirror@6.0.1(@lezer/common@1.2.2))
       '@electric-sql/pglite-sync':
-        specifier: 0.2.7
-        version: 0.2.7(@electric-sql/pglite@0.2.7)
+        specifier: ^0.2.11
+        version: 0.2.11(@electric-sql/pglite@0.2.10)
+      db:
+        specifier: workspace:*
+        version: link:../../packages/db
       next:
         specifier: 14.2.14
         version: 14.2.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
-        specifier: ^18
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@types/node':
-        specifier: ^20
+        specifier: ^20.16.10
         version: 20.16.10
       '@types/react':
-        specifier: ^18
+        specifier: ^18.3.10
         version: 18.3.10
       '@types/react-dom':
-        specifier: ^18
+        specifier: ^18.3.0
         version: 18.3.0
       eslint:
-        specifier: ^8
+        specifier: ^8.57.1
         version: 8.57.1
       eslint-config-next:
         specifier: 14.2.14
         version: 14.2.14(eslint@8.57.1)(typescript@5.6.2)
       postcss:
-        specifier: ^8
+        specifier: ^8.4.47
         version: 8.4.47
       tailwindcss:
-        specifier: ^3.4.1
+        specifier: ^3.4.13
         version: 3.4.13
       typescript:
-        specifier: ^5
+        specifier: ^5.6.2
         version: 5.6.2
 
   packages/db:
     dependencies:
       drizzle-orm:
         specifier: ^0.33.0
-        version: 0.33.0(@electric-sql/pglite@0.2.9)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(react@18.3.1)
+        version: 0.33.0(@electric-sql/pglite@0.2.10)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(react@18.3.1)
       pg:
         specifier: ^8.13.0
         version: 8.13.0
@@ -162,33 +165,30 @@ packages:
   '@drizzle-team/brocli@0.10.1':
     resolution: {integrity: sha512-AHy0vjc+n/4w/8Mif+w86qpppHuF3AyXbcWW+R/W7GNA3F5/p2nuhlkCJaTXSLZheB4l1rtHzOfr9A7NwoR/Zg==}
 
-  '@electric-sql/client@0.3.4':
-    resolution: {integrity: sha512-LffHg/zL6OK65Qw7jzvwK3VUYh1QGt/bWzeols/BgH62F3ljIuKrK/VZM1ceNMrsnSnfzg+xWo48QJRH/QWhKg==}
+  '@electric-sql/client@0.6.0':
+    resolution: {integrity: sha512-azAnhA6MlYnlammL6GIZKiD5AYgk6/Il4HTHYfk8WUDMoLWeqit35Pm95WnzJ6suFkAyeLhCFM2LaaBzPBBIIQ==}
 
-  '@electric-sql/pglite-react@0.2.7':
-    resolution: {integrity: sha512-QCq6PhgSatgOSbBvxjgRuh59VhlkULmwX9VcpLwki3wY/c0gSmOX7OORV7Hp4tnkxnnmrRDVhfjca+KLcw54BQ==}
+  '@electric-sql/pglite-react@0.2.10':
+    resolution: {integrity: sha512-i63SceV5AQu8aKGjRQhO8axENgQbRkJDrRtBCwBkqCySf8GQ2hpNe6Cn7WE78zyKeX1vqFXydUdq1aW4X5o2pQ==}
     peerDependencies:
-      '@electric-sql/pglite': ^0.2.7
+      '@electric-sql/pglite': ^0.2.10
       react: ^18.0.0
 
-  '@electric-sql/pglite-repl@0.2.7':
-    resolution: {integrity: sha512-9l+h+JVQaOvTMspzB3b7+6fRIREk7ps46ZOl1qrbooQcwjHGi6MAvlAlCh8k14z5NxwUAejb4PyIK5zo7CV3zQ==}
+  '@electric-sql/pglite-repl@0.2.10':
+    resolution: {integrity: sha512-huhzO3YRyDbEEFPCmkBvJznlg3wwncMszkHso/AQm2qdQr9XIELE00dDsNKbVWvuORaGQgxdGfSacnNiFyzPAw==}
     peerDependencies:
-      '@electric-sql/pglite': ^0.2.7
+      '@electric-sql/pglite': ^0.2.10
     peerDependenciesMeta:
       '@electric-sql/pglite':
         optional: true
 
-  '@electric-sql/pglite-sync@0.2.7':
-    resolution: {integrity: sha512-57XSOHtlO7pPAKbAEtS6rEKh7bUg4JT6YP2x2+JkPwmcAee3FHnIeuKE9BvjweEO+qhX1sqE9u45EV6zbScnCw==}
+  '@electric-sql/pglite-sync@0.2.11':
+    resolution: {integrity: sha512-jp+lf5//WytbUj5DvqoFH3+XnrV8HMFwYsyEvUr/VCmAA5K2wHMgCRbAjV/7hUzKdeXeGSaUAnW5z6sDWiy44Q==}
     peerDependencies:
-      '@electric-sql/pglite': ^0.2.7
+      '@electric-sql/pglite': ^0.2.10
 
-  '@electric-sql/pglite@0.2.7':
-    resolution: {integrity: sha512-8Il//XHTAtZ8VeQF+6P1UjsIoaAJyO4LwOMoXhSFaHpmkwKs63cUhHHNzLzUmcZvP/ZTmlT3+xTiWfU/EyoxwQ==}
-
-  '@electric-sql/pglite@0.2.9':
-    resolution: {integrity: sha512-KPItmBmPVZJGOv+qkCXmWyIPUPLQIyN+BVtV/zD+083aWSR/2ReaCUN+HJv6Jw4z9zJ00UCPQkeUXvOLuTlumg==}
+  '@electric-sql/pglite@0.2.10':
+    resolution: {integrity: sha512-0TJF/1ouBweCtyZC4oHwx+dHGn/lP16KfEO/3q22RDuZUsV2saTuYAwb6eK3gBLzVdXG4dj4xZilvmBYEM/WQg==}
 
   '@esbuild-kit/core-utils@3.3.2':
     resolution: {integrity: sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ==}
@@ -669,8 +669,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@lezer/common@1.2.1':
-    resolution: {integrity: sha512-yemX0ZD2xS/73llMZIK6KplkjIjf2EvAHcinDi/TfJ9hS25G0388+ClHt6/3but0oOxinTcQHJLDXh6w1crzFQ==}
+  '@lezer/common@1.2.2':
+    resolution: {integrity: sha512-Z+R3hN6kXbgBWAuejUNPihylAL1Z5CaFqnIe0nTX8Ej+XlIy3EGtXxn6WtLMO+os2hRkQvm2yvaGMYliUzlJaw==}
 
   '@lezer/highlight@1.2.1':
     resolution: {integrity: sha512-Z5duk4RN/3zuVO7Jq0pGLJ3qynpxUVsh7IbUbGj88+uV2ApSAn6kWg2au3iJb+0Zi7kKtqffIESgNcRXWZWmSA==}
@@ -2445,26 +2445,26 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1)':
+  '@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2)':
     dependencies:
       '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@codemirror/view': 6.34.1
-      '@lezer/common': 1.2.1
+      '@lezer/common': 1.2.2
 
   '@codemirror/commands@6.6.2':
     dependencies:
       '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@codemirror/view': 6.34.1
-      '@lezer/common': 1.2.1
+      '@lezer/common': 1.2.2
 
   '@codemirror/lang-sql@6.8.0(@codemirror/view@6.34.1)':
     dependencies:
-      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1)
+      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2)
       '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
-      '@lezer/common': 1.2.1
+      '@lezer/common': 1.2.2
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
     transitivePeerDependencies:
@@ -2474,7 +2474,7 @@ snapshots:
     dependencies:
       '@codemirror/state': 6.4.1
       '@codemirror/view': 6.34.1
-      '@lezer/common': 1.2.1
+      '@lezer/common': 1.2.2
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
       style-mod: 4.1.2
@@ -2508,32 +2508,32 @@ snapshots:
 
   '@drizzle-team/brocli@0.10.1': {}
 
-  '@electric-sql/client@0.3.4':
+  '@electric-sql/client@0.6.0':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.24.0
 
-  '@electric-sql/pglite-react@0.2.7(@electric-sql/pglite@0.2.7)(react@18.3.1)':
+  '@electric-sql/pglite-react@0.2.10(@electric-sql/pglite@0.2.10)(react@18.3.1)':
     dependencies:
-      '@electric-sql/pglite': 0.2.7
+      '@electric-sql/pglite': 0.2.10
       react: 18.3.1
 
-  '@electric-sql/pglite-repl@0.2.7(@babel/runtime@7.25.6)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@electric-sql/pglite@0.2.7)(@lezer/common@1.2.1)(codemirror@6.0.1(@lezer/common@1.2.1))':
+  '@electric-sql/pglite-repl@0.2.10(@babel/runtime@7.25.6)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@electric-sql/pglite@0.2.10)(@lezer/common@1.2.2)(codemirror@6.0.1(@lezer/common@1.2.2))':
     dependencies:
-      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1)
+      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2)
       '@codemirror/commands': 6.6.2
       '@codemirror/lang-sql': 6.8.0(@codemirror/view@6.34.1)
       '@codemirror/language': 6.10.3
       '@codemirror/view': 6.34.1
-      '@electric-sql/pglite-react': 0.2.7(@electric-sql/pglite@0.2.7)(react@18.3.1)
+      '@electric-sql/pglite-react': 0.2.10(@electric-sql/pglite@0.2.10)(react@18.3.1)
       '@uiw/codemirror-theme-github': 4.23.4(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)
       '@uiw/codemirror-theme-xcode': 4.23.4(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)
       '@uiw/codemirror-themes': 4.23.4(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)
-      '@uiw/react-codemirror': 4.23.4(@babel/runtime@7.25.6)(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1))(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.34.1)(codemirror@6.0.1(@lezer/common@1.2.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@uiw/react-codemirror': 4.23.4(@babel/runtime@7.25.6)(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2))(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.34.1)(codemirror@6.0.1(@lezer/common@1.2.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       psql-describe: 0.1.5
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
-      '@electric-sql/pglite': 0.2.7
+      '@electric-sql/pglite': 0.2.10
     transitivePeerDependencies:
       - '@babel/runtime'
       - '@codemirror/lint'
@@ -2543,15 +2543,12 @@ snapshots:
       - '@lezer/common'
       - codemirror
 
-  '@electric-sql/pglite-sync@0.2.7(@electric-sql/pglite@0.2.7)':
+  '@electric-sql/pglite-sync@0.2.11(@electric-sql/pglite@0.2.10)':
     dependencies:
-      '@electric-sql/client': 0.3.4
-      '@electric-sql/pglite': 0.2.7
+      '@electric-sql/client': 0.6.0
+      '@electric-sql/pglite': 0.2.10
 
-  '@electric-sql/pglite@0.2.7': {}
-
-  '@electric-sql/pglite@0.2.9':
-    optional: true
+  '@electric-sql/pglite@0.2.10': {}
 
   '@esbuild-kit/core-utils@3.3.2':
     dependencies:
@@ -2835,15 +2832,15 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@lezer/common@1.2.1': {}
+  '@lezer/common@1.2.2': {}
 
   '@lezer/highlight@1.2.1':
     dependencies:
-      '@lezer/common': 1.2.1
+      '@lezer/common': 1.2.2
 
   '@lezer/lr@1.4.2':
     dependencies:
-      '@lezer/common': 1.2.1
+      '@lezer/common': 1.2.2
 
   '@next/env@14.2.14': {}
 
@@ -3017,9 +3014,9 @@ snapshots:
       '@typescript-eslint/types': 8.8.0
       eslint-visitor-keys: 3.4.3
 
-  '@uiw/codemirror-extensions-basic-setup@4.23.4(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1))(@codemirror/commands@6.6.2)(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)':
+  '@uiw/codemirror-extensions-basic-setup@4.23.4(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2))(@codemirror/commands@6.6.2)(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)':
     dependencies:
-      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1)
+      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2)
       '@codemirror/commands': 6.6.2
       '@codemirror/language': 6.10.3
       '@codemirror/lint': 6.8.2
@@ -3049,15 +3046,15 @@ snapshots:
       '@codemirror/state': 6.4.1
       '@codemirror/view': 6.34.1
 
-  '@uiw/react-codemirror@4.23.4(@babel/runtime@7.25.6)(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1))(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.34.1)(codemirror@6.0.1(@lezer/common@1.2.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@uiw/react-codemirror@4.23.4(@babel/runtime@7.25.6)(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2))(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.34.1)(codemirror@6.0.1(@lezer/common@1.2.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.6
       '@codemirror/commands': 6.6.2
       '@codemirror/state': 6.4.1
       '@codemirror/theme-one-dark': 6.1.2
       '@codemirror/view': 6.34.1
-      '@uiw/codemirror-extensions-basic-setup': 4.23.4(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1))(@codemirror/commands@6.6.2)(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)
-      codemirror: 6.0.1(@lezer/common@1.2.1)
+      '@uiw/codemirror-extensions-basic-setup': 4.23.4(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2))(@codemirror/commands@6.6.2)(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)
+      codemirror: 6.0.1(@lezer/common@1.2.2)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
@@ -3237,9 +3234,9 @@ snapshots:
 
   client-only@0.0.1: {}
 
-  codemirror@6.0.1(@lezer/common@1.2.1):
+  codemirror@6.0.1(@lezer/common@1.2.2):
     dependencies:
-      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.1)
+      '@codemirror/autocomplete': 6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2)
       '@codemirror/commands': 6.6.2
       '@codemirror/language': 6.10.3
       '@codemirror/lint': 6.8.2
@@ -3366,9 +3363,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.33.0(@electric-sql/pglite@0.2.9)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(react@18.3.1):
+  drizzle-orm@0.33.0(@electric-sql/pglite@0.2.10)(@types/pg@8.11.10)(@types/react@18.3.10)(pg@8.13.0)(react@18.3.1):
     optionalDependencies:
-      '@electric-sql/pglite': 0.2.9
+      '@electric-sql/pglite': 0.2.10
       '@types/pg': 8.11.10
       '@types/react': 18.3.10
       pg: 8.13.0

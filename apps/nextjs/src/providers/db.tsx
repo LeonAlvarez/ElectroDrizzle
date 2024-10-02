@@ -1,35 +1,26 @@
 "use client"
 
-import React, { createContext, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PGliteProvider } from "@electric-sql/pglite-react"
-
-const DBContext = createContext({})
+import { initializeDB } from "../db"
 
 export default function DBProvider({ children }: { children: React.ReactNode }) {
-  const [db, setDb] = useState<any | null>(null)
-
-  const initDB = async () => {
-    try {
-      const { PGlite } = await import("@electric-sql/pglite")
-
-      const db = await PGlite.create()
-      setDb(db);
-    } catch (error) {
-      console.error("Failed to initialize PGlite:", error)
-    }
-  }
+  const [db, setDb] = useState<any>(null);
 
   useEffect(() => {
-    initDB()
-  }, [])
+    initializeDB().then(initializedDb => {
+      console.log("db initialized", initializedDb);
+      setDb(initializedDb);
+    }).catch(error => {
+      console.error("Failed to initialize db", error);
+    });
+  }, []);
 
   if (!db) return <div>Loading...</div>;
 
   return (
     <PGliteProvider db={db}>
-      <DBContext.Provider value={{}}>
-        {children}
-      </DBContext.Provider>
+      {children}
     </PGliteProvider>
   )
 }

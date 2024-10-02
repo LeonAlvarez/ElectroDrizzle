@@ -16,4 +16,5 @@ export const db = drizzle(queryClient, {
   schema: { ...users, ...posts },
 });
 
+
 export default db;
