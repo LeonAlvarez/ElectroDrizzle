@@ -2,7 +2,7 @@ import { PGlite } from "@electric-sql/pglite";
 import { electricSync } from "@electric-sql/pglite-sync";
 import { vector } from "@electric-sql/pglite/vector";
 import { PGliteWorkerOptions, worker } from '@electric-sql/pglite/worker'
-import { syncTables, runMigrations } from "@/initDb";
+import { runMigrations, syncTables } from "@/initDb";
 
 worker({
   async init(options: PGliteWorkerOptions) {

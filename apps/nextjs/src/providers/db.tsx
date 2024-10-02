@@ -13,20 +13,24 @@ export default function DBProvider({ children }: { children: React.ReactNode }):
   const [pg, setPg] = useState<PGliteInterface>();
 
   const setPglite = async () => {
+    const debug = 1;
     const pglite = await PGliteWorker.create(
       new Worker(new URL('../workers/db.ts', import.meta.url), {
         type: 'module',
       }),
       {
         dataDir: `idb://${dbName}`,
-        extensions: { live },
-        debug: 1,
+        extensions: {
+          live,
+        },
+        debug,
         meta: {
           dbName,
           electricBaseUrl: ELECTRIC_SQL_BASE_URL,
         },
       }
     );
+
     setPg(pglite);
   }
 
