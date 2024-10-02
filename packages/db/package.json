@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:export": "tsx ./export-migrations.ts",
     "db:generate": "drizzle-kit generate && pnpm db:export",
-    "db:migrate": "dotenv -e ../../.env -- drizzle-kit migrate"
+    "db:migrate": "dotenv -e ../../.env -- drizzle-kit migrate",
+    "db:seed": "dotenv -e ../../.env -- tsx ./seeder.ts"
   },
   "keywords": [],
   "author": "",
