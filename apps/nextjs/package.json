@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@electric-sql/pglite": "^0.2.10",
-    "@electric-sql/pglite-react": "^0.2.10",
-    "@electric-sql/pglite-repl": "^0.2.10",
-    "@electric-sql/pglite-sync": "^0.2.11",
+    "@electric-sql/pglite": "latest",
+    "@electric-sql/pglite-react": "latest",
+    "@electric-sql/pglite-repl": "latest",
+    "@electric-sql/pglite-sync": "0.2.10",
     "db": "workspace:*",
     "next": "14.2.14",
     "react": "^18.3.1",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.16.10",
-    "@types/react": "^18.3.10",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.14",

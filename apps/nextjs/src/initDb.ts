@@ -1,5 +1,5 @@
 
-import { createPgLiteClient, schema, PgDialect, frontMigrations } from "db/front";
+import { createPgLiteClient, PgDialect, frontMigrations } from "db/front";
 import { PGliteInterface } from "@electric-sql/pglite";
 
 type TablesToSync = {
@@ -15,7 +15,7 @@ const TablesToSync: TablesToSync = [{
 
 
 export async function runMigrations(pg: PGliteInterface, dbName: string) {
-  const db = createPgLiteClient(pg, schema);
+  const db = createPgLiteClient(pg);
 
   //prevent multiple schema migrations to be run
   let isLocalDBSchemaSynced = false;

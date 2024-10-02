@@ -7,7 +7,7 @@ services:
       - redis_data:/data
 
   postgres:
-    image: postgres:17-alpine
+    image: postgres:16-alpine
     command:
       - -c
       - listen_addresses=*

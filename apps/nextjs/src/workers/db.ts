@@ -6,7 +6,7 @@ import { runMigrations, syncTables } from "@/initDb";
 
 worker({
   async init(options: PGliteWorkerOptions) {
-    const pg = new PGlite({
+    const pg = await PGlite.create({
       dataDir: options.dataDir,
       extensions: {
         vector,
@@ -16,8 +16,14 @@ worker({
     });
 
     await runMigrations(pg, options.meta.dbName);
-    await syncTables(pg, options.meta.electricBaseUrl);
+    //await syncTables(pg, options.meta.electricBaseUrl);
+    
+    await pg.electric.syncShapeToTable({
+      shape: { url: `${options.meta.electricBaseUrl}/users` },
+      table: 'users',
+      primaryKey: ['id'],
+    });
 
     return pg;
   }
-});
+}); 

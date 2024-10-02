@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import DBProvider from "@/providers/db";
+import { DbProvider } from "@/providers/db";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,9 +33,9 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <DBProvider>
+        <DbProvider>
           {children}
-        </DBProvider>
+        </DbProvider>
       </body>
     </html>
   );
