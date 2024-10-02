@@ -1,6 +1,6 @@
 import { defineConfig } from "drizzle-kit";
 
-export const migrationsFolder = "./src/db/migrations";
+export const migrationsFolder = "./migrations";
 
 export default defineConfig({
   dialect: "postgresql",
