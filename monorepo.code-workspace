@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"name": "ROOT",
+			"path": "."
+		},
+		{
+			"path": "apps/api"
+		},
+		{
+			"path": "apps/next"
+		},
+		{
+			"path": "packages/tsconfig"
+		},
+		{
+			"path": "packages/core"
+		},
+		{
+			"path": "packages/ui"
+		},
+		{
+			"path": "packages/db"
+		},
+	]
+}
