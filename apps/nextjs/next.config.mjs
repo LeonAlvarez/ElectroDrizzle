@@ -6,7 +6,7 @@ const nextConfig = {
     "@electric-sql/pglite-repl",
     "@electric-sql/pglite",
   ],
-  reactStrictMode: true,
+  reactStrictMode: false,
 };
 
 export default nextConfig;
