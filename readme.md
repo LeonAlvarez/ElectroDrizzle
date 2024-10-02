@@ -42,7 +42,7 @@ The project is organized as a monorepo with the following main components:
 1. Clone the repository:
 
    ```
-   git clone [repository-url]
+   git clone https://github.com/LeonAlvarez/ElectroDrizzle
    cd drizzle_monorepo
    ```
 
