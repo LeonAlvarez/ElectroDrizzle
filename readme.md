@@ -14,7 +14,7 @@ It demonstrates a full-stack application with a PostgreSQL database, ElectricSQL
 The project is organized as a monorepo with the following main components:
 
 - `apps/`
-  - `api/`: Express.js API server
+  - `api/`: Hono API server
   - `nextjs/`: Next.js frontend application
 - `packages/`
   - `db/`: Database schema and migrations
@@ -24,7 +24,7 @@ The project is organized as a monorepo with the following main components:
 
 1. **Drizzle ORM**: Used for database operations and schema management.
 2. **Next.js Frontend**: React-based frontend with server-side rendering capabilities.
-3. **Express.js API**: Custom API for backend operations.
+3. **Hono API**: Custom API for backend operations.
 4. **ElectricSQL Integration**: Enables local-first development with offline capabilities.
 5. **PostgreSQL Database**: Main database for the application.
 6. **Docker Setup**: Includes configurations for PostgreSQL, Redis, and ElectricSQL.
@@ -104,7 +104,7 @@ The project is organized as a monorepo with the following main components:
 
 ### API (apps/api)
 
-- Express.js server with Hono framework
+- Hono framework
 - Endpoints for users and posts
 
 ### Frontend (apps/nextjs)
