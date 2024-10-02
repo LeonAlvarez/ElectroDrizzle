@@ -1,6 +1,7 @@
 
 import { createPgLiteClient, schema, PgDialect, frontMigrations } from "db/front";
 import { PGliteWorker } from '@electric-sql/pglite/worker'
+import { PGliteInterface } from "@electric-sql/pglite";
 
 type TablesToSync = {
   shape?: string;
@@ -14,7 +15,7 @@ const TablesToSync: TablesToSync = [{
 }]
 
 
-export async function initDB(pg: PGliteWorker, dbName: string, electricBaseUrl: string) {
+export async function runMigrations(pg: PGliteInterface, dbName: string) {
   const db = createPgLiteClient(pg, schema);
 
   //prevent multiple schema migrations to be run
@@ -37,7 +38,9 @@ export async function initDB(pg: PGliteWorker, dbName: string, electricBaseUrl: 
       throw cause;
     }
   }
+}
 
+export async function syncTables(pg: PGliteInterface, electricBaseUrl: string) {
   const syncStart = performance.now();
   await Promise.all(TablesToSync.map(({ shape, table, primaryKey }) => {
     //@ts-ignore
@@ -49,5 +52,4 @@ export async function initDB(pg: PGliteWorker, dbName: string, electricBaseUrl: 
   }));
 
   console.info(`✅ Local database synced in ${performance.now() - syncStart}ms`);
-
 }
