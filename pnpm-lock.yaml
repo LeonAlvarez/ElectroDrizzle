@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@types/node':
+        specifier: ^22.7.4
+        version: 22.7.4
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
