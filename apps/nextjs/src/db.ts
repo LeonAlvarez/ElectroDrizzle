@@ -3,7 +3,7 @@
 import { PGlite } from "@electric-sql/pglite";
 import { live } from "@electric-sql/pglite/live";
 import { vector } from "@electric-sql/pglite/vector";
-import { createPgLiteClient, schema, PgDialect } from "db/front";
+import { createPgLiteClient, schema, PgDialect, frontMigrations } from "db/front";
 
 const isDev = process.env.NODE_ENV === "development";
 const dbName = isDev ? "local-test-dev" : "local-test";
@@ -24,8 +24,12 @@ async function initializeDB() {
   if (!isLocalDBSchemaSynced) {
     const start = performance.now();
     try {
-      // @ts-expect-error 🤷 don't know why db._.session is not a Session
-      await new PgDialect().migrate(migrations, _db._.session, dbName);
+      await new PgDialect().migrate(
+        frontMigrations,
+        //@ts-ignore
+        _db._.session,
+        dbName
+      );
       isLocalDBSchemaSynced = true;
       console.info(`✅ Local database ready in ${performance.now() - start}ms`);
     } catch (cause) {
