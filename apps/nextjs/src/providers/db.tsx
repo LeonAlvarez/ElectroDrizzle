@@ -8,12 +8,14 @@ export default function DBProvider({ children }: { children: React.ReactNode }) 
   const [db, setDb] = useState<any>(null);
 
   useEffect(() => {
-    initializeDB().then(initializedDb => {
-      console.log("db initialized", initializedDb);
-      setDb(initializedDb);
-    }).catch(error => {
+    try {
+      initializeDB().then(initializedDb => {
+        console.log("db initialized", initializedDb);
+        setDb(initializedDb);
+      })
+    } catch (error) {
       console.error("Failed to initialize db", error);
-    });
+    }
   }, []);
 
   if (!db) return <div>Loading...</div>;

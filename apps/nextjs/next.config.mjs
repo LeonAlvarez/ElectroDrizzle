@@ -6,9 +6,7 @@ const nextConfig = {
     "@electric-sql/pglite-repl",
     "@electric-sql/pglite",
   ],
-  // experimental: {
-  //   serverComponentsExternalPackages: ["@electric-sql/pglite"],
-  // },
+  reactStrictMode: false,
 };
 
 export default nextConfig;
