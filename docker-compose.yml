@@ -1,0 +1,48 @@
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-drizzle_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command:
+      - -c
+      - listen_addresses=*
+      - -c
+      - wal_level=logical
+
+  pgbouncer:
+    image: brainsam/pgbouncer:latest
+    environment:
+      DB_HOST: postgres
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_DB}
+      DB_port: 5432
+    links:
+      - postgres:postgres
+    ports:
+      - 6432:6432
+
+  electric:
+    image: electricsql/electric:latest
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    ports:
+      - "8003:3000"
+    depends_on:
+      - postgres
+
+volumes:
+  redis_data:
+  postgres_data:

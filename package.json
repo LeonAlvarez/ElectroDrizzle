@@ -21,7 +21,9 @@
     "lint:core": "turbo run lint --filter='./packages/core'",
     "lint:db": "turbo run lint --filter='./packages/db'",
     "lint:ui": "turbo run lint --filter='./packages/ui'",
-    "lint:tsconfig": "turbo run lint --filter='./packages/tsconfig'"
+    "lint:tsconfig": "turbo run lint --filter='./packages/tsconfig'",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
   },
   "keywords": [],
   "author": "",
