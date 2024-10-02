@@ -1,4 +1,8 @@
-# Drizzle Monorepo Project
+# ElectroDrizzle
+
+## A Full-Stack Monorepo to demostrate the use of Drizzle ORM, Next.js, PgLite & ElectricSQL
+
+ElectroDrizzle is a modern, full-stack application demonstrating the power of Drizzle ORM, Next.js, and ElectricSQL in a monorepo setup. It showcases local-first development with offline capabilities, seamless database operations, and a robust API.
 
 ## Overview
 
