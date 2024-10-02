@@ -7,7 +7,7 @@
     "preinstall": "npx only-allow pnpm",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "dotenv -- turbo run build",
-    "build:all": "dotenv -- turbo run build  --include-dependencies",
+    "build:all": "turbo run build  --include-dependencies",
     "dev": "dotenv -- turbo run dev --parallel",
     "start:apps": "turbo run start --parallel --filter='./apps/*'",
     "start": "turbo run start --parallel",

@@ -6,5 +6,5 @@
       "outputs": ["dist/**", "umd/**", "build/**", ".next"]
     }
   },
-  "globalDependencies": ["pnpm-lock.yaml"]
+  "globalDependencies": ["pnpm-lock.yaml", ".env"]
 }
