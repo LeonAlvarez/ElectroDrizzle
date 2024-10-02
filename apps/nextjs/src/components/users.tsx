@@ -1,6 +1,6 @@
 'use client'
 
-import { useLiveQuery, usePGlite } from '@electric-sql/pglite-react'
+import { useLiveQuery } from '@electric-sql/pglite-react'
 
 export const Users = () => {
 
