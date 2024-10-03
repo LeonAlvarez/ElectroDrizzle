@@ -14,5 +14,5 @@ export const useDbLiveQuery = <T, E = undefined>({ queryFn, data, defaultValue =
   const { sql, params } = queryFn(db._db, data as E).toSQL();
 
   const res = useLiveQuery<T>(sql, params);
-  return res?.rows || defaultValue;
+  return res?.rows as T || defaultValue;
 }
