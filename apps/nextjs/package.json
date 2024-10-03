@@ -14,16 +14,18 @@
     "@electric-sql/pglite-repl": "latest",
     "@electric-sql/pglite-sync": "0.2.10",
     "db": "workspace:*",
-    "next": "14.2.14",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "next": "15.0.0-rc.0",
+    "react": "19.0.0-rc-459fd418-20241001",
+    "react-dom": "19.0.0-rc-459fd418-20241001"
   },
   "devDependencies": {
+    "@swc/cli": "0.4.1-nightly.20240914",
+    "@swc/core": "^1.7.26",
     "@types/node": "^20.16.10",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.14",
+    "eslint-config-next": "15.0.0-rc.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2"

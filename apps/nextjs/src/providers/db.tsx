@@ -71,13 +71,18 @@ export function DbProvider({ children }: { children: React.ReactNode }): React.R
     });
 
     const _db = await runMigrations(pg, dbName);
-    
+
     Object.defineProperty(pg, '_db', {
       value: _db,
       writable: false,
     });
   
-    await syncTables(pg, ELECTRIC_SQL_BASE_URL);
+    //await syncTables(pg, ELECTRIC_SQL_BASE_URL);
+    await pg.electric.syncShapeToTable({
+      shape: { url: `${ELECTRIC_SQL_BASE_URL}/users` },
+      table: 'users',
+      primaryKey: ['id'],
+    });
 
     setPg(pg);
   }

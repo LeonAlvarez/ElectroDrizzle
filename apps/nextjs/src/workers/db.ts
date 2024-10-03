@@ -15,7 +15,7 @@ worker({
       debug: options.debug
     });
 
-    await runMigrations(pg, options.meta.dbName);
+    //await runMigrations(pg, options.meta.dbName);
     //await syncTables(pg, options.meta.electricBaseUrl);
     
     await pg.electric.syncShapeToTable({
