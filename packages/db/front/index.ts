@@ -9,8 +9,10 @@ export const frontMigrations = migrations;
 
 export const createPgLiteClient = (client: any) => {
   return PgLiteDrizzle(client, {
-    schema: schema,
+    schema,
   });
 };
+
+export * as users from "../services/users";
 
 export default createPgLiteClient;

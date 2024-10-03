@@ -1,19 +1,18 @@
-'use client'
+"use client";
 
-import { useLiveQuery } from '@electric-sql/pglite-react'
+import { createUserService } from "db/services/users";
+import { useDbLiveQuery } from "@/hooks/useDbLiveQuery";
+import { User } from "db/schema/users";
 
 export const Users = () => {
+  const users = useDbLiveQuery<User[], { limit: number }>({
+    queryFn: (db, extra) => {
+      const { getUsers } = createUserService(db);
+      return getUsers().limit(extra.limit);
+    },
+    data: { limit: 10 },
+  });
 
-  const maxNumber = 100
-  const data = useLiveQuery(`
-    SELECT *
-    FROM users
-    ORDER BY id
-    LIMIT $1;
-  `, [maxNumber]);
-
-  console.log("data", data);
-  const users = data?.rows || []
   console.log("users", users);
 
   return (
@@ -22,7 +21,7 @@ export const Users = () => {
         <div key={user.id}>{user.name}</div>
       ))}
     </>
-  )
-}
+  );
+};
 
 export default Users;

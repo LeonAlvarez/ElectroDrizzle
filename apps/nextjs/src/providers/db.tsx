@@ -11,12 +11,17 @@ import { electricSync } from "@electric-sql/pglite-sync";
 const dbName = 'electro-drizzle';
 const ELECTRIC_SQL_BASE_URL = process.env.NEXT_PUBLIC_ELECTRIC_SQL_BASE_URL || 'http://localhost:8003/v1/shape';
 
+
+export interface ExtendedPGlite extends PGliteInterface {
+  _db?: PGliteInterface;
+}
+
 export function DbWorkerProvider({ children }: { children: React.ReactNode }): React.ReactNode {
   const [pg, setPg] = useState<PGliteInterface>();
 
   const setPglite = async () => {
     const debug = 1;
-    const pglite = await PGliteWorker.create(
+    const pglite: PGliteInterface = await PGliteWorker.create(
       new Worker(new URL('../workers/db.ts', import.meta.url), {
         type: 'module',
       }),
@@ -65,14 +70,14 @@ export function DbProvider({ children }: { children: React.ReactNode }): React.R
       debug
     });
 
-    await runMigrations(pg, dbName);
+    const _db = await runMigrations(pg, dbName);
+    
+    Object.defineProperty(pg, '_db', {
+      value: _db,
+      writable: false,
+    });
+  
     await syncTables(pg, ELECTRIC_SQL_BASE_URL);
-
-    // await pg.electric.syncShapeToTable({
-    //   shape: { url: `${options.meta.electricBaseUrl}/users` },
-    //   table: 'users',
-    //   primaryKey: ['id'],
-    // });
 
     setPg(pg);
   }

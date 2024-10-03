@@ -37,6 +37,8 @@ export async function runMigrations(pg: PGliteInterface, dbName: string) {
       throw cause;
     }
   }
+
+  return db;
 }
 
 export async function syncTables(pg: PGliteInterface, electricBaseUrl: string) {
