@@ -1,6 +1,5 @@
 import { eq, SQL } from "drizzle-orm";
 import { users } from "../schema";
-import { PgDatabase } from "drizzle-orm/pg-core";
 import { User, UserInsert } from "../schema/users";
 
 export interface UserService {
@@ -11,7 +10,7 @@ export interface UserService {
   deleteUser: (id: string) => SQL<User[]>;
 }
 
-export function createUserService(db: PgDatabase<any, User, any> | any): UserService {
+export function createUserService(db: any): UserService {
   return {
     getUsers: (where?: SQL) => {
       return db.select().from(users).where(where);
@@ -20,7 +19,6 @@ export function createUserService(db: PgDatabase<any, User, any> | any): UserSer
       return db.select().from(users).where(eq(users.id, parseInt(id))).limit(1);
     },
     createUser: (userData: UserInsert) => {
-      // Ensure that 'name' is provided and is a string
       if (typeof userData.name !== 'string') {
         throw new Error('Name is required and must be a string');
       }
