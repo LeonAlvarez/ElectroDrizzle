@@ -8,6 +8,7 @@ worker({
   async init(options: PGliteWorkerOptions) {
     const pg = await PGlite.create({
       dataDir: options.dataDir,
+      fs: options.fs,
       extensions: {
         vector,
         electric: electricSync({ debug: options?.debug !== undefined }),
@@ -15,14 +16,8 @@ worker({
       debug: options.debug
     });
 
-    //await runMigrations(pg, options.meta.dbName);
-    //await syncTables(pg, options.meta.electricBaseUrl);
-    
-    await pg.electric.syncShapeToTable({
-      shape: { url: `${options.meta.electricBaseUrl}/users` },
-      table: 'users',
-      primaryKey: ['id'],
-    });
+    await runMigrations(pg, options.meta.dbName);
+    await syncTables(pg, options.meta.electricBaseUrl);
 
     return pg;
   }

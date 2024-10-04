@@ -6,15 +6,13 @@ import { User } from "db/schema/users";
 import { useLiveQuery } from "@electric-sql/pglite-react";
 import { faker } from '@faker-js/faker';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-
 export const Users = () => {
   const users = useDbLiveQuery<User[], { limit: number }>({
     queryFn: (db, extra) => {
       const { getUsers } = createUserService(db);
-      return getUsers().limit(extra.limit);
+      return getUsers()//.limit(extra.limit);
     },
-    data: { limit: 10 },
+    //data: { limit: 10 },
   });
 
   const data = useLiveQuery<User>(`select * from users limit $1`, [10]);
@@ -22,7 +20,7 @@ export const Users = () => {
 
   const createUser = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/users`, {
+      const response = await fetch('/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

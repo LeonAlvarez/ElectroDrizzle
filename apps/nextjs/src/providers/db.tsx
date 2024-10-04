@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { PGliteProvider } from "@electric-sql/pglite-react"
 import { PGliteWorker } from '@electric-sql/pglite/worker'
-import { PGlite, PGliteInterface } from "@electric-sql/pglite";
+import { IdbFs, PGlite, PGliteInterface } from "@electric-sql/pglite";
 import { live } from "@electric-sql/pglite/live";
 import { runMigrations, syncTables } from "@/initDb";
 import { electricSync } from "@electric-sql/pglite-sync";
+import { vector } from "@electric-sql/pglite/vector";
 
-const dbName = 'electro-drizzle';
-const ELECTRIC_SQL_BASE_URL = process.env.NEXT_PUBLIC_ELECTRIC_SQL_BASE_URL || 'http://localhost:8003/v1/shape';
+const dbName = 'test';
+const ELECTRIC_SQL_BASE_URL = process.env.NEXT_PUBLIC_ELECTRIC_SQL_BASE_URL;
 
 
 export interface ExtendedPGlite extends PGliteInterface {
@@ -21,15 +22,18 @@ export function DbWorkerProvider({ children }: { children: React.ReactNode }): R
 
   const setPglite = async () => {
     const debug = 1;
-    const pglite: PGliteInterface = await PGliteWorker.create(
+    const pglite = await PGliteWorker.create(
       new Worker(new URL('../workers/db.ts', import.meta.url), {
         type: 'module',
       }),
       {
-        dataDir: `idb://${dbName}`,
+        //dataDir: `idb://${dbName}`,
+        //fs: new OpfsAhpFS('./path/to/datadir/'),
+        relaxedDurability: true,
+        dataDir: 'memory://',
         extensions: {
           live,
-          //electric: electricSync({ debug: debug !== undefined }),
+          vector,
         },
         debug,
         meta: {
@@ -38,6 +42,13 @@ export function DbWorkerProvider({ children }: { children: React.ReactNode }): R
         },
       }
     );
+
+    const _db = await runMigrations(pglite, dbName);
+
+    Object.defineProperty(pglite, '_db', {
+      value: _db,
+      writable: false,
+    });
 
     setPg(pglite);
   }
@@ -61,30 +72,35 @@ export function DbProvider({ children }: { children: React.ReactNode }): React.R
 
   const setPglite = async () => {
     const debug = 1;
-    const pg = await PGlite.create({
-      dataDir: `idb://${dbName}`,
+    const pglite = await PGlite.create({
+      //dataDir: `idb://${dbName}`,
+      relaxedDurability: true,
+      dataDir: 'memory://',
+      //fs: new IdbFs('my-database'),
+      //fs: new OpfsAhpFS('./path/to/datadir/'),
       extensions: {
+        vector,
         live,
         electric: electricSync({ debug: debug !== undefined }),
       },
       debug
     });
 
-    const _db = await runMigrations(pg, dbName);
+    const _db = await runMigrations(pglite, dbName);
 
     Object.defineProperty(pg, '_db', {
       value: _db,
       writable: false,
     });
-  
+
     //await syncTables(pg, ELECTRIC_SQL_BASE_URL);
-    await pg.electric.syncShapeToTable({
+    pglite.electric.syncShapeToTable({
       shape: { url: `${ELECTRIC_SQL_BASE_URL}/users` },
       table: 'users',
       primaryKey: ['id'],
     });
 
-    setPg(pg);
+    setPg(pglite);
   }
 
   useEffect(() => {
